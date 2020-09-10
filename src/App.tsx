@@ -18,14 +18,7 @@ const fieldRows: Array<RowValues> = [
     valuePropertyName: 'title',
     property: 'title',
     inputType: 'text',
-    title: 'Headline',
-    value: '',
-  },
-  {
-    valuePropertyName: 'slug',
-    property: 'slug',
-    inputType: 'text',
-    title: 'Slug',
+    title: 'Plan Text',
     value: '',
   },
   {
@@ -33,7 +26,21 @@ const fieldRows: Array<RowValues> = [
     options: ['COVID-19', 'Leadership', 'Tests'],
     property: 'category',
     inputType: 'text',
-    title: 'Category',
+    title: 'Auto-Suggest',
+    value: '',
+  },
+  {
+    valuePropertyName: 'slug',
+    property: 'slug',
+    inputType: 'dropdown',
+    title: 'Dropdown',
+    value: '',
+  },
+  {
+    valuePropertyName: 'multiple',
+    property: 'multiple',
+    inputType: 'multiple-choice',
+    title: 'Multiple-Choice',
     value: '',
   },
 ];
@@ -44,7 +51,6 @@ function App() {
   const handleFieldChange = (property: string, newValue: string) => {
     const newState = [...rowData];
     const selectedRow = newState.find((row) => row.property === property) || { value: '' };
-    console.log(property, newValue, newState);
     selectedRow.value = newValue;
     setRowData(newState);
   };

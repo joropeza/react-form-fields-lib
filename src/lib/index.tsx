@@ -23,7 +23,12 @@ const FieldRow = ({
     }
     case 'multiple-choice': {
       return MultipleChoiceFieldRow({
-        inputType, title, property, value, handleFieldChange, EditorComponent: EditorComponent || notComponent,
+        inputType,
+        title,
+        property,
+        value,
+        handleFieldChange,
+        EditorComponent: EditorComponent || notComponent,
       });
     }
     default: {
