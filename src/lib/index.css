@@ -1,0 +1,30 @@
+.react-autosuggest__container {
+    display: inline;
+}
+
+.asText {
+    background:none;
+    border:none;
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+}
+
+.form-field-row > label {
+    display: block;
+    font-size: .8em;
+    line-height: 2em;
+    text-align: left;
+}
+
+.form-field-row:last-child {
+    text-align: left;
+}
+
+.form-field-row :last-child {
+    text-align: left;
+}
+
+.form-field-row input {
+    width: 80%;
+}

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Autosuggest from 'react-autosuggest';
 
 import { FieldRowProps } from './FieldRowProps';
@@ -14,6 +14,7 @@ function shouldRenderSuggestions(value: any) {
 const TextFieldRow = ({
   title, options, property, value, handleFieldChange,
 }: FieldRowProps) => {
+  const [isEditing, setIsEditing] = useState(false);
   if (options && options.length > 0) {
     const inputProps = {
       placeholder: 'type...',
@@ -24,32 +25,32 @@ const TextFieldRow = ({
     const suggestions:any = options;
 
     return (
-      <div key={property}>
+      <div className="form-field-row" key={property}>
         <label htmlFor={property}>
           {title}
-          :
-          <Autosuggest
-            suggestions={suggestions}
-            onSuggestionsFetchRequested={() => {}}
-            onSuggestionsClearRequested={() => {}}
-            getSuggestionValue={getSuggestionValue}
-            shouldRenderSuggestions={shouldRenderSuggestions}
-            renderSuggestion={(suggestion) => <div>{suggestion}</div>}
-            inputProps={inputProps}
-          />
         </label>
+        <Autosuggest
+          suggestions={suggestions}
+          onSuggestionsFetchRequested={() => {}}
+          onSuggestionsClearRequested={() => {}}
+          getSuggestionValue={getSuggestionValue}
+          shouldRenderSuggestions={shouldRenderSuggestions}
+          renderSuggestion={(suggestion) => <div>{suggestion}</div>}
+          inputProps={inputProps}
+        />
       </div>
 
     );
-    // create a list of suggestions
   }
   return (
-    <div key={property}>
+    <div className="form-field-row" key={property}>
       <label htmlFor={property}>
         {title}
-        :
-        <input id={property} type="text" value={value} onChange={(e) => handleFieldChange(property, e.target.value)} />
       </label>
+      {isEditing || !value ?
+        <input id={property} type="text" value={value} onChange={(e) => handleFieldChange(property, e.target.value)} /> :
+        <button className="asText" type="button" onClick={() => setIsEditing(true)}>{value}</button>
+      }
     </div>
   );
 };

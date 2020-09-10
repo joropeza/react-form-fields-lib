@@ -1,9 +1,17 @@
-import React from 'react';
+/* eslint-disable no-undef */
+import React, { FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 
-const Modal = ({ isShowing, hide, children }) => {
-  function handleOverlayClicked(e) {
-    if (e.target.className !== 'modal-wrapper') {
+interface ModalProps {
+  isShowing: boolean,
+  hide: Function,
+  handleFieldChange: Function,
+  children: any,
+}
+
+const Modal: FunctionComponent<ModalProps> = ({ isShowing, hide, children }) => {
+  function handleOverlayClicked(e: MouseEvent) {
+    if (e.target && (e.target as HTMLAreaElement).className !== 'modal-wrapper') {
       return;
     }
     hide();

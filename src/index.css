@@ -6,8 +6,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-* + * {
+main > * + * {
   margin-top: 1.5em;
+  padding-top: 1em;
+  border-top: solid grey .05em;
 }
 
 code {

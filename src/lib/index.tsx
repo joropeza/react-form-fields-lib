@@ -5,6 +5,8 @@ import TextFieldRow from './FieldRows/TextFieldRow';
 
 import { FieldRowProps } from './FieldRows/FieldRowProps';
 
+import './index.css';
+
 const notComponent = () => <div />;
 
 const FieldRow = ({
@@ -23,7 +25,6 @@ const FieldRow = ({
     }
     case 'multiple-choice': {
       return MultipleChoiceFieldRow({
-        inputType,
         title,
         property,
         value,

@@ -22,6 +22,13 @@ const fieldRows: Array<RowValues> = [
     value: '',
   },
   {
+    valuePropertyName: 'title',
+    property: 'title',
+    inputType: 'text',
+    title: 'Plan Text with Default Value',
+    value: '111 W Pennsylvania Ave',
+  },
+  {
     valuePropertyName: 'category',
     options: ['COVID-19', 'Leadership', 'Tests'],
     property: 'category',
@@ -41,7 +48,7 @@ const fieldRows: Array<RowValues> = [
     property: 'multiple',
     inputType: 'multiple-choice',
     title: 'Multiple-Choice',
-    value: '',
+    value: 'Default Value',
   },
 ];
 

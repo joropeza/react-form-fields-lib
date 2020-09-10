@@ -5,7 +5,6 @@ import useModal from '../Modal/useModal';
 import '../Modal/modal.css';
 
 interface MultipleChoiceFieldRowrops {
-  inputType: 'text' | 'dropdown' | 'multiple-choice',
   title: string,
   property: string,
   value: any,
@@ -14,20 +13,19 @@ interface MultipleChoiceFieldRowrops {
 }
 
 const MultipleChoiceFieldRow = ({
-  inputType, title, property, value, EditorComponent, handleFieldChange,
+  title, property, value, EditorComponent, handleFieldChange,
 }: MultipleChoiceFieldRowrops) => {
   const { isShowing, toggle } = useModal();
   return (
-    <div key={property}>
+    <div className="form-field-row" key={property}>
       <label htmlFor={property}>
         {title}
-        :
       </label>
-      {value}
-      <button type="button" className="button-default" onClick={toggle}>Show Modal</button>
+      <button type="button" className="asText" onClick={toggle}>{value}</button>
       <Modal
         isShowing={isShowing}
         hide={toggle}
+        handleFieldChange={handleFieldChange}
       >
         <EditorComponent />
       </Modal>
