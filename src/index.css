@@ -6,13 +6,28 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-main > * + * {
-  margin-top: 1.5em;
-  padding-top: 1em;
-  border-top: solid grey .05em;
+main {
+  width: 80%;
+  margin: 0 auto;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+main > * + * {
+  margin-top: 1em;
+  padding-top: 1em;
+  /* border-top: solid grey .05em; */
 }
+
+/*
+
+@media (min-width: 768px) {
+  body {
+    font-size: 2em;
+    line-height: 3em;
+  }
+
+  .form-field-row input {
+    line-height: 3em;
+  }
+}
+
+*/

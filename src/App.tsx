@@ -15,17 +15,17 @@ type RowValues = {
 
 const fieldRows: Array<RowValues> = [
   {
-    valuePropertyName: 'title',
-    property: 'title',
+    valuePropertyName: 'plain',
+    property: 'plain',
     inputType: 'text',
-    title: 'Plan Text',
+    title: 'Plain Text',
     value: '',
   },
   {
-    valuePropertyName: 'title',
-    property: 'title',
+    valuePropertyName: 'plain_with_default',
+    property: 'plain_with_default',
     inputType: 'text',
-    title: 'Plan Text with Default Value',
+    title: 'Plain Text with Default Value',
     value: '111 W Pennsylvania Ave',
   },
   {
