@@ -1,8 +1,11 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import React, { useEffect, useRef, useState } from 'react';
 import Autosuggest from 'react-autosuggest';
 
 import { FieldRowProps } from './FieldRowProps';
 import useFocusControl from './useFocusControl';
+
+import './autosuggest.css';
 
 function getSuggestionValue(suggestion: any) {
   return suggestion;
@@ -38,50 +41,69 @@ const TextFieldRow = ({
     }
   });
 
-  if (options && options.length > 0) {
-    const inputProps = {
-      placeholder: 'type...',
-      value,
-      onChange: (e: any, { newValue }: any) => handleFieldChange(property, newValue),
-    };
+  const handleKeyPress = (target :any) => {
+    if (target.charCode === 13 && value) {
+      setIsEditing(false);
+    }
+  };
 
-    const suggestions:any = options;
+  const inputProps = {
+    placeholder: 'type...',
+    value,
+    onBlur: () => setIsEditing(!value),
+    onChange: (e: any, { newValue }: any) => handleFieldChange(property, newValue),
+  };
 
-    return (
-      <div className="form-field-row" key={property}>
-        <label htmlFor={property}>
-          {title}
-        </label>
-        <Autosuggest
-          suggestions={suggestions}
-          onSuggestionsFetchRequested={() => {}}
-          onSuggestionsClearRequested={() => {}}
-          getSuggestionValue={getSuggestionValue}
-          shouldRenderSuggestions={shouldRenderSuggestions}
-          renderSuggestion={(suggestion) => <div>{suggestion}</div>}
-          inputProps={inputProps}
-        />
-      </div>
+  const suggestions:any = options;
 
+  const bareInputComponent = (iProps:any) => (
+    <input
+      id={property}
+      ref={inputElement}
+      type="text"
+      value={value}
+      onBlur={() => setIsEditing(!value)}
+      onFocus={() => setIsEditing(true)}
+      onKeyPress={(e) => handleKeyPress(e)}
+      onChange={(e) => handleFieldChange(property, e.target.value)}
+      {...iProps}
+    />
+  );
+
+  const inputElementRendering = (options && options.length > 0)
+    ? (
+      <Autosuggest
+        id={`autosuggest-${property}`}
+        suggestions={suggestions}
+        onSuggestionsFetchRequested={() => {}}
+        onSuggestionsClearRequested={() => {}}
+        getSuggestionValue={getSuggestionValue}
+        shouldRenderSuggestions={shouldRenderSuggestions}
+        renderSuggestion={(suggestion) => <div>{suggestion}</div>}
+        renderInputComponent={bareInputComponent}
+        inputProps={inputProps}
+      />
+    )
+    : (
+      <input
+        id={property}
+        ref={inputElement}
+        type="text"
+        value={value}
+        onBlur={() => setIsEditing(!value)}
+        onFocus={() => setIsEditing(true)}
+        onKeyPress={(e) => handleKeyPress(e)}
+        onChange={(e) => handleFieldChange(property, e.target.value)}
+      />
     );
-  }
+
   return (
     <div className="form-field-row" key={property}>
       <label htmlFor={property}>
         {title}
       </label>
       {isEditing
-        ? (
-          <input
-            id={property}
-            ref={inputElement}
-            type="text"
-            value={value}
-            onBlur={() => setIsEditing(!value)}
-            onFocus={() => setIsEditing(true)}
-            onChange={(e) => handleFieldChange(property, e.target.value)}
-          />
-        )
+        ? (inputElementRendering)
         : (
           <button
             className="asText"
