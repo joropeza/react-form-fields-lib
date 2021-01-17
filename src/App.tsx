@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './App.css';
 
+import './lib/index.css';
+import './lib/FieldRows/autosuggest.css';
+import './lib/Modal/modal.css';
+
 import FieldRow from './lib';
 
 type RowValues = {

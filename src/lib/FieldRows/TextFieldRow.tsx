@@ -15,14 +15,6 @@ function shouldRenderSuggestions(value: any) {
   return value.trim().length > 2;
 }
 
-function usePrevious(value: any) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 const TextFieldRow = ({
   title, options, property, value, handleFieldChange,
 }: FieldRowProps) => {

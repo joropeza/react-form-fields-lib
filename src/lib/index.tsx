@@ -5,8 +5,6 @@ import TextFieldRow from './FieldRows/TextFieldRow';
 
 import { FieldRowProps } from './FieldRows/FieldRowProps';
 
-import './index.css';
-
 const notComponent = () => <div />;
 
 const FieldRow = ({
